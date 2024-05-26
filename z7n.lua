@@ -1,9 +1,12 @@
-if IY_LOADED and not _G.IY_DEBUG == true then
-    -- error("z7n AI is already running!", 0)
+if Z7N_LOADED and not _G.Z7N_DEBUG == true then
+    -- error("z7n FE is already running!", 0)
     return
 end
 
-pcall(function() getgenv().IY_LOADED = true end)
+local cver = "0.1"
+print("Thanks for using z7n FE v"..cver)
+
+pcall(function() getgenv().Z7N_LOADED = true end)
 
 local cloneref = cloneref or function(o) return o end
 COREGUI = cloneref(game:GetService("CoreGui"))
@@ -12,7 +15,7 @@ Players = cloneref(game:GetService("Players"))
 if not game:IsLoaded() then
     local notLoaded = Instance.new("Message")
     notLoaded.Parent = COREGUI
-    notLoaded.Text = "z7n AI is waiting for the game to load"
+    notLoaded.Text = "z7n fe is waiting for the game to load"
     game.Loaded:Wait()
     notLoaded:Destroy()
 end
@@ -207,7 +210,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.RobotoMono
 Title.TextSize = 18
-Title.Text = "z7n AI v" .. currentVersion
+Title.Text = "z7n FE v" .. currentVersion
 
 do
 	local emoji = ({
@@ -251,7 +254,6 @@ Dark.Position = UDim2.new(0, 0, 0, 45)
 Dark.Size = UDim2.new(0, 250, 0, 175)
 Dark.ZIndex = 10
 table.insert(shade1,Dark)
-
 Cmdbar.Name = "Cmdbar"
 Cmdbar.Parent = Holder
 Cmdbar.BackgroundTransparency = 1
@@ -599,6 +601,7 @@ IntroBackground.BorderSizePixel = 0
 IntroBackground.Position = UDim2.new(0, 0, 0, 45)
 IntroBackground.Size = UDim2.new(0, 250, 0, 175)
 IntroBackground.ZIndex = 10
+IntroBackground.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 
 Logo.Name = "Logo"
 Logo.Parent = Holder
@@ -606,7 +609,7 @@ Logo.BackgroundTransparency = 1
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0, 125, 0, 127)
 Logo.Size = UDim2.new(0, 10, 0, 10)
-Logo.Image = "rbxassetid://1352543873"
+Logo.Image = "rbxassetid://17627620113"
 Logo.ImageTransparency = 0
 Logo.ZIndex = 10
 
@@ -616,9 +619,9 @@ Credits.BackgroundTransparency = 1
 Credits.BorderSizePixel = 0
 Credits.Position = UDim2.new(0, 0, 0.9, 30)
 Credits.Size = UDim2.new(0, 250, 0, 20)
-Credits.Font = Enum.Font.SourceSansLight
+Credits.Font = Enum.Font.RobotoMono
 Credits.FontSize = Enum.FontSize.Size18
-Credits.Text = "Edge // Zwolf // Moon // Toon"
+Credits.Text = "@aledaml on discord"
 Credits.TextColor3 = Color3.new(1, 1, 1)
 Credits.ZIndex = 10
 
@@ -743,6 +746,7 @@ background_2.BorderSizePixel = 0
 background_2.Position = UDim2.new(0, 0, 0, 20)
 background_2.Size = UDim2.new(0, 360, 0, 185)
 background_2.ZIndex = 10
+background_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 table.insert(shade1,background_2)
 
 Dark_3.Name = "Dark"
@@ -1313,7 +1317,7 @@ PluginEditor.ZIndex = 10
 background_3.Name = "background"
 background_3.Parent = PluginEditor
 background_3.Active = true
-background_3.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+background_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 background_3.BorderSizePixel = 0
 background_3.Position = UDim2.new(0, 0, 0, 20)
 background_3.Size = UDim2.new(0, 360, 0, 160)
@@ -1374,7 +1378,7 @@ About.Position = UDim2.new(0, 17, 0, 10)
 About.Size = UDim2.new(0, 187, 0, 49)
 About.Font = Enum.Font.SourceSans
 About.TextSize = 14
-About.Text = "Plugins are .iy files and should be located in the 'workspace' folder of your exploit."
+About.Text = "Plugins are .json files and should be located in the 'workspace' folder of your exploit."
 About.TextColor3 = Color3.fromRGB(255, 255, 255)
 About.TextWrapped = true
 About.TextYAlignment = Enum.TextYAlignment.Top
@@ -1488,7 +1492,7 @@ ToPartFrame.ZIndex = 10
 background_4.Name = "background"
 background_4.Parent = ToPartFrame
 background_4.Active = true
-background_4.BackgroundColor3 = Color3.fromRGB(36, 36, 37)
+background_4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 background_4.BorderSizePixel = 0
 background_4.Position = UDim2.new(0, 0, 0, 20)
 background_4.Size = UDim2.new(0, 360, 0, 117)
@@ -1654,7 +1658,7 @@ ImageLabel_2.ZIndex = 10
 background.Name = "background"
 background.Parent = logs
 background.Active = true
-background.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.145098)
+background.BackgroundColor3 = Color3.new(0, 0, 0)
 background.BorderSizePixel = 0
 background.ClipsDescendants = true
 background.Position = UDim2.new(0, 0, 1, 0)
@@ -2779,7 +2783,7 @@ currentText2 = Color3.new(0, 0, 0)
 currentScroll = Color3.fromRGB(78,78,79)
 
 defaultsettings = {
-	prefix = ';';
+	prefix = '$';
 	StayOpen = true;
 	espTransparency = 0.65;
 	keepIY = true;
@@ -2801,7 +2805,7 @@ defaultsettings = {
 defaults = HttpService:JSONEncode(defaultsettings)
 nosaves = false
 useFactorySettings = function()
-    prefix = ';'
+    prefix = '$'
     StayOpen = true
     KeepInfYield = true
     espTransparency = 0.3
@@ -2821,7 +2825,7 @@ function saves()
 			if readfile("z7n_AI.json") ~= nil then
 				local success, response = pcall(function()
 					local json = HttpService:JSONDecode(readfile("z7n_AI.json"))
-					if json.prefix ~= nil then prefix = json.prefix else prefix = ';' end
+					if json.prefix ~= nil then prefix = json.prefix else prefix = '$' end
 					if json.StayOpen ~= nil then StayOpen = json.StayOpen else StayOpen = true end
 					if json.keepIY ~= nil then KeepInfYield = json.keepIY else KeepInfYield = true end
 					if json.espTransparency ~= nil then espTransparency = json.espTransparency else espTransparency = 0.3 end
@@ -2979,7 +2983,7 @@ function saves()
             Directions.Size = UDim2.new(0, 340, 0, 185)
             Directions.Font = Enum.Font.SourceSans
             Directions.TextSize = 14
-            Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nz7n AI is now using factory settings until your executor fixes its file system.\n\nYour data has not been deleted."
+            Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nz7n FE is now using factory settings until your executor fixes its file system.\n\nYour data has not been deleted."
             Directions.TextColor3 = Color3.new(1, 1, 1)
             Directions.TextWrapped = true
             Directions.TextXAlignment = Enum.TextXAlignment.Left
@@ -3884,7 +3888,7 @@ SaveChatlogs.MouseButton1Down:Connect(function()
 		if #scroll_2:GetChildren() > 0 then
 			notify("Loading",'Hold on a sec')
 			local placeName = CleanFileName(MarketplaceService:GetProductInfo(PlaceId).Name)
-			local writelogs = '-- z7n AI Chat logs for "'..placeName..'"\n'
+			local writelogs = '-- z7n FE Chat logs for "'..placeName..'"\n'
 			for _, child in pairs(scroll_2:GetChildren()) do
 				writelogs = writelogs..'\n'..child.Text
 			end
@@ -4097,7 +4101,8 @@ end)
 
 PrefixBox:GetPropertyChangedSignal("Text"):Connect(function()
 	prefix = PrefixBox.Text
-	Cmdbar.PlaceholderText = "cmd | your prefix is: ("..prefix..")"
+	Cmdbar.PlaceholderText = "Search"
+    Cmdbar.Font = Enum.Font.RobotoMono
 	updatesaves()
 end)
 
@@ -4326,7 +4331,7 @@ function autoComplete(str,curText)
 end
 
 CMDs = {}
-CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the z7n AI support server.'}
+CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the z7n FE support server.'}
 CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'explorer / dex', DESC = 'Opens DEX by Moon'}
 CMDs[#CMDs + 1] = {NAME = 'olddex / odex', DESC = 'Opens Old DEX by Moon'}
@@ -4970,7 +4975,7 @@ function execCmd(cmdStr,speaker,store)
 				if infTimes then
 					while lastBreakTime < cmdStartTime do
 						local success,err = pcall(cmd.FUNC,args, speaker)
-						if not success and _G.IY_DEBUG then
+						if not success and _G.Z7N_DEBUG then
 							warn("Command Error:", cmdName, err)
 						end
 						wait(cmdDelay)
@@ -4981,7 +4986,7 @@ function execCmd(cmdStr,speaker,store)
 						local success,err = pcall(function()
 							cmd.FUNC(args, speaker)
 						end)
-						if not success and _G.IY_DEBUG then
+						if not success and _G.Z7N_DEBUG then
 							warn("Command Error:", cmdName, err)
 						end
 						if cmdDelay ~= 0 then wait(cmdDelay) end
@@ -5465,7 +5470,8 @@ Players.LocalPlayer.Chatted:Connect(function()
 	end
 end)
 
-Cmdbar.PlaceholderText = "cmd | your prefix is ("..prefix..")"
+Cmdbar.PlaceholderText = "Search"
+Cmdbar.Font = Enum.Font.RobotoMono
 Cmdbar:GetPropertyChangedSignal("Text"):Connect(function()
 	if Cmdbar:IsFocused() then
 		IndexContents(Cmdbar.Text,true,true)
@@ -5559,7 +5565,7 @@ function ESP(plr)
 				TextLabel.BackgroundTransparency = 1
 				TextLabel.Position = UDim2.new(0, 0, 0, -50)
 				TextLabel.Size = UDim2.new(0, 100, 0, 100)
-				TextLabel.Font = Enum.Font.SourceSansSemibold
+				TextLabel.Font = Enum.Font.RobotoMono
 				TextLabel.TextSize = 20
 				TextLabel.TextColor3 = Color3.new(1, 1, 1)
 				TextLabel.TextStrokeTransparency = 0
@@ -5598,7 +5604,7 @@ function ESP(plr)
 					if COREGUI:FindFirstChild(plr.Name..'_ESP') then
 						if plr.Character and getRoot(plr.Character) and plr.Character:FindFirstChildOfClass("Humanoid") and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
 							local pos = math.floor((getRoot(Players.LocalPlayer.Character).Position - getRoot(plr.Character).Position).magnitude)
-							TextLabel.Text = 'Name: '..plr.Name..' | Health: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' | Studs: '..pos
+							TextLabel.Text = 'name = '..plr.Name..' | hp = '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1) ..' | id = '..plr.UserId..' | distance = '..pos
 						end
 					else
 						teamChange:Disconnect()
@@ -6299,7 +6305,7 @@ local TeleportCheck = false
 Players.LocalPlayer.OnTeleport:Connect(function(State)
 	if KeepInfYield and (not TeleportCheck) and queueteleport then
 		TeleportCheck = true
-		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/ejh0/z7n-FE/main/z7n.lua'))()")
+		queueteleport("loadstring(game:HttpGet(' '))()")
 	end
 end)
 
@@ -7636,7 +7642,7 @@ addcmd('hideiy',{},function(args, speaker)
 	end
 	minimizeNum = 0
 	minimizeHolder()
-	if not (args[1] and tostring(args[1]) == 'nonotify') then notify('z7n AI Hidden','You can press the prefix key to access the command bar') end
+	if not (args[1] and tostring(args[1]) == 'nonotify') then notify('z7n FE Hidden','You can press the prefix key to access the command bar') end
 end)
 
 addcmd('showiy',{'unhideiy'},function(args, speaker)
@@ -12497,7 +12503,6 @@ task.spawn(function()
 
 	if success then
 		if currentVersion ~= latestVersionInfo.Version then
-			notify('Thanks for using z7n AI')
 		end
 
 		if latestVersionInfo.Announcement and latestVersionInfo.Announcement ~= '' then
@@ -12599,5 +12604,5 @@ task.spawn(function()
 	Credits:Destroy()
 	IntroBackground:Destroy()
 	minimizeHolder()
-	if IsOnMobile then notify("Unstable Device", "On mobile, z7n AI may have issues or features that are not functioning correctly.") end
+	if IsOnMobile then notify("Unstable Device", "On mobile, z7n FE may have issues or features that are not functioning correctly.") end
 end)
