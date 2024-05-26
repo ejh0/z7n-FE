@@ -1,10 +1,10 @@
 if Z7N_LOADED and not _G.Z7N_DEBUG == true then
-    -- error("z7n FE is already running!", 0)
+    -- error("z7n is already running!", 0)
     return
 end
 
-local cver = "0.1"
-print("Thanks for using z7n FE v"..cver)
+local cver = "0.2"
+print("Thanks for using z7n v"..cver)
 
 pcall(function() getgenv().Z7N_LOADED = true end)
 
@@ -15,12 +15,49 @@ Players = cloneref(game:GetService("Players"))
 if not game:IsLoaded() then
     local notLoaded = Instance.new("Message")
     notLoaded.Parent = COREGUI
-    notLoaded.Text = "z7n fe is waiting for the game to load"
+    notLoaded.Text = "z7n is waiting for the game to load"
     game.Loaded:Wait()
     notLoaded:Destroy()
 end
 
-currentVersion = "0.1"
+currentVersion = "0.2"
+
+local Player = game:GetService("Players").LocalPlayer
+local Character = Player.Character
+local AllPlayers = game:GetService("Players").GetPlayers
+local Humanoid = Player.Character:FindFirstChild("Humanoid")
+local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+local Position = HumanoidRootPart.Position
+local VirtualUser = game:GetService("VirtualUser")
+local MaxHealth = Humanoid.MaxHealth
+local MinHealth = Humanoid.Health
+
+local Id = game:GetService("Players").LocalPlayer.UserId
+local Username = game:GetService("Players").LocalPlayer.Name
+local DisplayName = game:GetService("Players").LocalPlayer.DisplayName
+local AccountAge = game:GetService("Players").LocalPlayer.AccountAge
+
+local Workspace = game:GetService("Workspace")
+local Camera = Workspace.CurrentCamera
+local InputService = game:GetService("UserInputService")
+local CoreGui = game:GetService("CoreGui")
+local TeleportService = game:GetService("TeleportService")
+local TweenService = game:GetService("TweenService")
+local ContentService = game:GetService("ContentProvider")
+local RunService = game:GetService("RunService")
+local DataStore = game:GetService("DataStoreService")
+local StarterGui = game:GetService("CoreGui")
+local Lighting = game:GetService("Lighting")
+
+local wl1 = 97619790
+local wl2 = 566513942
+local wl3 = 5317326642
+
+if Id == wl1 or wl2 or wl3 then
+    print("[z7n] ~ Thanks for using z7n!")
+else
+    Player:Kick("[z7n] ~ You are not whitelisted. If you believe this was a mistake, please message @aledaml on discord.")
+end
 
 Holder = Instance.new("Frame")
 Title = Instance.new("TextLabel")
@@ -210,7 +247,7 @@ Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 250, 0, 20)
 Title.Font = Enum.Font.RobotoMono
 Title.TextSize = 18
-Title.Text = "z7n FE v" .. currentVersion
+Title.Text = "z7n v" .. currentVersion
 
 do
 	local emoji = ({
@@ -1908,7 +1945,7 @@ ViewportTextBox.convert(Cmdbar).View.ZIndex = 10
 ViewportTextBox.convert(Cmdbar_2).View.ZIndex = 10
 ViewportTextBox.convert(Cmdbar_3).View.ZIndex = 10
 
-IYMouse = Players.LocalPlayer:GetMouse()
+Z7NMouse = Players.LocalPlayer:GetMouse()
 PlayerGui = Players.LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
 UserInputService = cloneref(game:GetService("UserInputService"))
 TweenService = cloneref(game:GetService("TweenService"))
@@ -2736,9 +2773,9 @@ reference = (function()
 		{111,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Text",Parent={105},Position=UDim2.new(0,8,0,148),Size=UDim2.new(1,-8,0,16),Text="Setting up 'goto $1' on the OnChatted event will teleport you to any player that chats.",TextColor3=Color3.new(1,1,1),TextSize=14,TextWrapped=true,TextXAlignment=0,TextYAlignment=0,ZIndex=10,}},
 		{112,"Frame",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Name="Section",Parent={7},Size=UDim2.new(1,0,0,105),ZIndex=10,}},
 		{113,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=4,Name="Header",Parent={112},Position=UDim2.new(0,8,0,5),Size=UDim2.new(1,-8,0,20),Text="Get Further Help",TextColor3=Color3.new(1,1,1),TextSize=20,TextXAlignment=0,ZIndex=10,}},
-		{114,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Text",Parent={112},Position=UDim2.new(0,8,0,30),Size=UDim2.new(1,-8,0,32),Text="You can join the Discord server to get support with IY,  and read up on more documentation such as the Plugin API.",TextColor3=Color3.new(1,1,1),TextSize=14,TextWrapped=true,TextXAlignment=0,ZIndex=10,}},
+		{114,"TextLabel",{BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=1,Font=3,Name="Text",Parent={112},Position=UDim2.new(0,8,0,30),Size=UDim2.new(1,-8,0,32),Text="You can join the Discord server to get support, and read up on more documentation such as the Plugin API.",TextColor3=Color3.new(1,1,1),TextSize=14,TextWrapped=true,TextXAlignment=0,ZIndex=10,}},
 		{115,"Frame",{BackgroundColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),BorderSizePixel=0,Name="Line",Parent={112},Position=UDim2.new(0,10,1,-1),Size=UDim2.new(1,-20,0,1),Visible=false,ZIndex=10,}},
-		{116,"TextButton",{BackgroundColor3=Color3.new(0.48627451062202,0.61960786581039,0.85098040103912),BorderColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),Font=4,Name="InviteButton",Parent={112},Position=UDim2.new(0,5,0,75),Size=UDim2.new(1,-10,0,25),Text="Copy Discord Invite Link (https://discord.gg/78ZuWSq)",TextColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),TextSize=16,ZIndex=10,}},
+		{116,"TextButton",{BackgroundColor3=Color3.new(0.48627451062202,0.61960786581039,0.85098040103912),BorderColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),Font=4,Name="InviteButton",Parent={112},Position=UDim2.new(0,5,0,75),Size=UDim2.new(1,-10,0,25),Text="Discord",TextColor3=Color3.new(0.1803921610117,0.1803921610117,0.1843137294054),TextSize=16,ZIndex=10,}},
 	})
 	for i,v in pairs(main.Content.List:GetDescendants()) do
 		if v:IsA("TextLabel") then
@@ -2756,7 +2793,7 @@ reference = (function()
 	local lastPress = nil
 	inviteButton.MouseButton1Click:Connect(function()
 		if everyClipboard then
-			toClipboard("https://discord.gg/78ZuWSq")
+			toClipboard("@aledaml")
 			inviteButton.Text = "Copied"
 		else
 			inviteButton.Text = "No Clipboard Function, type out the link"
@@ -2765,7 +2802,7 @@ reference = (function()
 		lastPress = pressTime
 		wait(2)
 		if lastPress ~= pressTime then return end
-		inviteButton.Text = "Copy Discord Invite Link (https://discord.gg/78ZuWSq)"
+		inviteButton.Text = "@aledaml"
 	end)
 	dragGUI(main)
 	main.Parent = PARENT
@@ -2786,7 +2823,7 @@ defaultsettings = {
 	prefix = '$';
 	StayOpen = true;
 	espTransparency = 0.65;
-	keepIY = true;
+	keepZ7N = true;
 	logsEnabled = false;
 	jLogsEnabled = false;
 	aliases = {};
@@ -2827,7 +2864,7 @@ function saves()
 					local json = HttpService:JSONDecode(readfile("z7n_AI.json"))
 					if json.prefix ~= nil then prefix = json.prefix else prefix = '$' end
 					if json.StayOpen ~= nil then StayOpen = json.StayOpen else StayOpen = true end
-					if json.keepIY ~= nil then KeepInfYield = json.keepIY else KeepInfYield = true end
+					if json.keepZ7N ~= nil then KeepInfYield = json.keepZ7N else KeepInfYield = true end
 					if json.espTransparency ~= nil then espTransparency = json.espTransparency else espTransparency = 0.3 end
 					if json.logsEnabled ~= nil then logsEnabled = json.logsEnabled else logsEnabled = false end
 					if json.jLogsEnabled ~= nil then jLogsEnabled = json.jLogsEnabled else jLogsEnabled = false end
@@ -2983,7 +3020,7 @@ function saves()
             Directions.Size = UDim2.new(0, 340, 0, 185)
             Directions.Font = Enum.Font.SourceSans
             Directions.TextSize = 14
-            Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nz7n FE is now using factory settings until your executor fixes its file system.\n\nYour data has not been deleted."
+            Directions.Text = "Sorry, but we have attempted to parse your data, but it is unreadable!\n\nz7n is now using factory settings until your executor fixes its file system.\n\nYour data has not been deleted."
             Directions.TextColor3 = Color3.new(1, 1, 1)
             Directions.TextWrapped = true
             Directions.TextXAlignment = Enum.TextXAlignment.Left
@@ -3040,7 +3077,7 @@ function updatesaves()
 		local update = {
 			prefix = prefix;
 			StayOpen = StayOpen;
-			keepIY = KeepInfYield;
+			keepZ7N = KeepInfYield;
 			espTransparency = espTransparency;
 			logsEnabled = logsEnabled;
 			jLogsEnabled = jLogsEnabled;
@@ -3281,7 +3318,7 @@ function CreateJoinLabel(plr,ID)
 	info2.Text = string.gsub(info2.Text, "Loading...",splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 end
 
-IYMouse.KeyDown:Connect(function(Key)
+Z7NMouse.KeyDown:Connect(function(Key)
 	if (Key==prefix) then
 		Cmdbar:CaptureFocus()
 		spawn(function()
@@ -3395,7 +3432,7 @@ ColorsButton.MouseButton1Click:Connect(function()
 				local greenInput = pickerFrame.Green.Input
 				local blueInput = pickerFrame.Blue.Input
 
-				local mouse = IYMouse
+				local mouse = Z7NMouse
 
 				local hue,sat,val = 0,0,1
 				local red,green,blue = 1,1,1
@@ -3888,7 +3925,7 @@ SaveChatlogs.MouseButton1Down:Connect(function()
 		if #scroll_2:GetChildren() > 0 then
 			notify("Loading",'Hold on a sec')
 			local placeName = CleanFileName(MarketplaceService:GetProductInfo(PlaceId).Name)
-			local writelogs = '-- z7n FE Chat logs for "'..placeName..'"\n'
+			local writelogs = '-- z7n Chat logs for "'..placeName..'"\n'
 			for _, child in pairs(scroll_2:GetChildren()) do
 				writelogs = writelogs..'\n'..child.Text
 			end
@@ -4019,20 +4056,20 @@ local ClickSelect = nil
 function selectPart()
 	ToPartFrame:TweenPosition(UDim2.new(0.5, -180, 0, 335), "InOut", "Quart", 0.5, true, nil)
 	local function HighlightPart()
-		if selected.Adornee ~= IYMouse.Target then
-			selectionBox.Adornee = IYMouse.Target
+		if selected.Adornee ~= Z7NMouse.Target then
+			selectionBox.Adornee = Z7NMouse.Target
 		else
 			selectionBox.Adornee = nil
 		end
 	end
-	ActivateHighlight = IYMouse.Move:Connect(HighlightPart)
+	ActivateHighlight = Z7NMouse.Move:Connect(HighlightPart)
 	local function SelectPart()
-		if IYMouse.Target ~= nil then
-			selected.Adornee = IYMouse.Target
-			Path.Text = getHierarchy(IYMouse.Target)
+		if Z7NMouse.Target ~= nil then
+			selected.Adornee = Z7NMouse.Target
+			Path.Text = getHierarchy(Z7NMouse.Target)
 		end
 	end
-	ClickSelect = IYMouse.Button1Down:Connect(SelectPart)
+	ClickSelect = Z7NMouse.Button1Down:Connect(SelectPart)
 end
 
 Part.MouseButton1Click:Connect(function()
@@ -4331,7 +4368,7 @@ function autoComplete(str,curText)
 end
 
 CMDs = {}
-CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the z7n FE support server.'}
+CMDs[#CMDs + 1] = {NAME = 'discord / support / help', DESC = 'Invite to the z7n support server.'}
 CMDs[#CMDs + 1] = {NAME = 'console', DESC = 'Loads old Roblox console'}
 CMDs[#CMDs + 1] = {NAME = 'explorer / dex', DESC = 'Opens DEX by Moon'}
 CMDs[#CMDs + 1] = {NAME = 'olddex / odex', DESC = 'Opens Old DEX by Moon'}
@@ -4361,11 +4398,11 @@ CMDs[#CMDs + 1] = {NAME = 'hideguis', DESC = 'Hides any GUIs in PlayerGui'}
 CMDs[#CMDs + 1] = {NAME = 'unhideguis', DESC = 'Undoes hideguis'}
 CMDs[#CMDs + 1] = {NAME = 'guidelete', DESC = 'Enables backspace to delete GUI'}
 CMDs[#CMDs + 1] = {NAME = 'unguidelete / noguidelete', DESC = 'Disables guidelete'}
-CMDs[#CMDs + 1] = {NAME = 'hideiy', DESC = 'Hides the main IY GUI'}
-CMDs[#CMDs + 1] = {NAME = 'showiy / unhideiy', DESC = 'Shows IY again'}
-CMDs[#CMDs + 1] = {NAME = 'keepiy', DESC = 'Auto execute IY when you teleport through servers'}
-CMDs[#CMDs + 1] = {NAME = 'unkeepiy', DESC = 'Disable keepiy'}
-CMDs[#CMDs + 1] = {NAME = 'togglekeepiy', DESC = 'Toggle keepiy'}
+CMDs[#CMDs + 1] = {NAME = 'hidez7n', DESC = 'Hides the main Z7N GUI'}
+CMDs[#CMDs + 1] = {NAME = 'showz7n / unhidez7n', DESC = 'Shows Z7N again'}
+CMDs[#CMDs + 1] = {NAME = 'keepz7n', DESC = 'Auto execute Z7N when you teleport through servers'}
+CMDs[#CMDs + 1] = {NAME = 'unkeepz7n', DESC = 'Disable keepz7n'}
+CMDs[#CMDs + 1] = {NAME = 'togglekeepz7n', DESC = 'Toggle keepz7n'}
 CMDs[#CMDs + 1] = {NAME = 'savegame / saveplace', DESC = 'Uses saveinstance to save the game'}
 CMDs[#CMDs + 1] = {NAME = 'clearerror', DESC = 'Clears the annoying box and blur when a game kicks you'}
 CMDs[#CMDs + 1] = {NAME = 'clientantikick / antikick (CLIENT)', DESC = 'Prevents localscripts from kicking you'}
@@ -4757,7 +4794,7 @@ IndexContents("", true)
 
 function checkTT()
 	local t
-	local guisAtPosition = COREGUI:GetGuiObjectsAtPosition(IYMouse.X, IYMouse.Y)
+	local guisAtPosition = COREGUI:GetGuiObjectsAtPosition(Z7NMouse.X, Z7NMouse.Y)
 
 	for _, gui in pairs(guisAtPosition) do
 		if gui.Parent == CMDsF then
@@ -4766,16 +4803,16 @@ function checkTT()
 	end
 
 	if t ~= nil and t:GetAttribute("Title") ~= nil then
-		local x = IYMouse.X
-		local y = IYMouse.Y
+		local x = Z7NMouse.X
+		local y = Z7NMouse.Y
 		local xP
 		local yP
-		if IYMouse.X > 200 then
+		if Z7NMouse.X > 200 then
 			xP = x - 201
 		else
 			xP = x + 21
 		end
-		if IYMouse.Y > (IYMouse.ViewSizeY-96) then
+		if Z7NMouse.Y > (Z7NMouse.ViewSizeY-96) then
 			yP = y - 97
 		else
 			yP = y
@@ -5072,7 +5109,7 @@ local WorldToScreen = function(Object)
 end
 
 local MousePositionToVector2 = function()
-	return Vector2.new(IYMouse.X, IYMouse.Y)
+	return Vector2.new(Z7NMouse.X, Z7NMouse.Y)
 end
 
 local GetClosestPlayerFromCursor = function()
@@ -6071,7 +6108,7 @@ local function clicktpFunc()
 		local hipHeight = humanoid and humanoid.HipHeight > 0 and (humanoid.HipHeight + 1)
 		local rootPart = getRoot(character)
 		local rootPartPosition = rootPart.Position
-		local hitPosition = IYMouse.Hit.Position
+		local hitPosition = Z7NMouse.Hit.Position
 		local newCFrame = CFrame.new(
 			hitPosition, 
 			Vector3.new(rootPartPosition.X, hitPosition.Y, rootPartPosition.Z)
@@ -6081,7 +6118,7 @@ local function clicktpFunc()
 	end)
 end
 
-IYMouse.Button1Down:Connect(function()
+Z7NMouse.Button1Down:Connect(function()
 	for i,v in pairs(binds) do
 		if v.COMMAND == 'clicktp' then
 			local input = v.KEY
@@ -6095,11 +6132,11 @@ IYMouse.Button1Down:Connect(function()
 		elseif v.COMMAND == 'clickdel' then
 			local input = v.KEY
 			if input == 'RightClick' and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
-				pcall(function() IYMouse.Target:Destroy() end)
+				pcall(function() Z7NMouse.Target:Destroy() end)
 			elseif input == 'LeftClick' and UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then
-				pcall(function() IYMouse.Target:Destroy() end)
+				pcall(function() Z7NMouse.Target:Destroy() end)
 			elseif UserInputService:IsKeyDown(Enum.KeyCode[input:sub(14)]) then
-				pcall(function() IYMouse.Target:Destroy() end)
+				pcall(function() Z7NMouse.Target:Destroy() end)
 			end
 		end
 	end
@@ -6108,17 +6145,17 @@ end)
 PluginsGUI = PluginEditor.background
 
 function addPlugin(name)
-	if name:lower() == 'plugin file name' or name:lower() == 'iy_fe.iy' or name == 'iy_fe' then
+	if name:lower() == 'plugin file name' or name:lower() == 'z7n_fe.z7n' or name == 'z7n_fe' then
 		notify('Plugin Error','Please enter a valid plugin')
 	else
 		local file
 		local fileName
-		if name:sub(-3) == '.iy' then
+		if name:sub(-3) == '.z7n' then
 			pcall(function() file = readfile(name) end)
 			fileName = name
 		else
-			pcall(function() file = readfile(name..'.iy') end)
-			fileName = name..'.iy'
+			pcall(function() file = readfile(name..'.z7n') end)
+			fileName = name..'.z7n'
 		end
 		if file then
 			if not FindInTable(PluginsTable, fileName) then
@@ -6136,8 +6173,8 @@ function addPlugin(name)
 end
 
 function deletePlugin(name)
-	local pName = name..'.iy'
-	if name:sub(-3) == '.iy' then
+	local pName = name..'.z7n'
+	if name:sub(-3) == '.z7n' then
 		pName = name
 	end
 	for i = #cmds,1,-1 do
@@ -6374,7 +6411,7 @@ addcmd('discord', {'support', 'help'}, function(args, speaker)
 	end
 end)
 
-addcmd('keepiy', {}, function(args, speaker)
+addcmd('keepz7n', {}, function(args, speaker)
 	if queueteleport then
 		KeepInfYield = true
 		updatesaves()
@@ -6383,7 +6420,7 @@ addcmd('keepiy', {}, function(args, speaker)
 	end
 end)
 
-addcmd('unkeepiy', {}, function(args, speaker)
+addcmd('unkeepz7n', {}, function(args, speaker)
 	if queueteleport then
 		KeepInfYield = false
 		updatesaves()
@@ -6392,7 +6429,7 @@ addcmd('unkeepiy', {}, function(args, speaker)
 	end
 end)
 
-addcmd('toggleunkeepiy', {}, function(args, speaker)
+addcmd('toggleunkeepz7n', {}, function(args, speaker)
 	if queueteleport then
 		KeepInfYield = not KeepInfYield
 		updatesaves()
@@ -6881,11 +6918,11 @@ end)
 
 FLYING = false
 QEfly = true
-iyflyspeed = 1
+z7nflyspeed = 1
 vehicleflyspeed = 1
 function sFLY(vfly)
 	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-	repeat wait() until IYMouse
+	repeat wait() until Z7NMouse
 	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
 
 	local T = getRoot(Players.LocalPlayer.Character)
@@ -6934,23 +6971,23 @@ function sFLY(vfly)
 			end
 		end)
 	end
-	flyKeyDown = IYMouse.KeyDown:Connect(function(KEY)
+	flyKeyDown = Z7NMouse.KeyDown:Connect(function(KEY)
 		if KEY:lower() == 'w' then
-			CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+			CONTROL.F = (vfly and vehicleflyspeed or z7nflyspeed)
 		elseif KEY:lower() == 's' then
-			CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+			CONTROL.B = - (vfly and vehicleflyspeed or z7nflyspeed)
 		elseif KEY:lower() == 'a' then
-			CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+			CONTROL.L = - (vfly and vehicleflyspeed or z7nflyspeed)
 		elseif KEY:lower() == 'd' then 
-			CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+			CONTROL.R = (vfly and vehicleflyspeed or z7nflyspeed)
 		elseif QEfly and KEY:lower() == 'e' then
-			CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+			CONTROL.Q = (vfly and vehicleflyspeed or z7nflyspeed)*2
 		elseif QEfly and KEY:lower() == 'q' then
-			CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+			CONTROL.E = -(vfly and vehicleflyspeed or z7nflyspeed)*2
 		end
 		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
 	end)
-	flyKeyUp = IYMouse.KeyUp:Connect(function(KEY)
+	flyKeyUp = Z7NMouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
 		elseif KEY:lower() == 's' then
@@ -7049,16 +7086,16 @@ local mobilefly = function(speaker, vfly)
 
 			local direction = controlModule:GetMoveVector()
 			if direction.X > 0 then
-				VelocityHandler.Velocity = VelocityHandler.Velocity + camera.CFrame.RightVector * (direction.X * ((vfly and vehicleflyspeed or iyflyspeed) * 50))
+				VelocityHandler.Velocity = VelocityHandler.Velocity + camera.CFrame.RightVector * (direction.X * ((vfly and vehicleflyspeed or z7nflyspeed) * 50))
 			end
 			if direction.X < 0 then
-				VelocityHandler.Velocity = VelocityHandler.Velocity + camera.CFrame.RightVector * (direction.X * ((vfly and vehicleflyspeed or iyflyspeed) * 50))
+				VelocityHandler.Velocity = VelocityHandler.Velocity + camera.CFrame.RightVector * (direction.X * ((vfly and vehicleflyspeed or z7nflyspeed) * 50))
 			end
 			if direction.Z > 0 then
-				VelocityHandler.Velocity = VelocityHandler.Velocity - camera.CFrame.LookVector * (direction.Z * ((vfly and vehicleflyspeed or iyflyspeed) * 50))
+				VelocityHandler.Velocity = VelocityHandler.Velocity - camera.CFrame.LookVector * (direction.Z * ((vfly and vehicleflyspeed or z7nflyspeed) * 50))
 			end
 			if direction.Z < 0 then
-				VelocityHandler.Velocity = VelocityHandler.Velocity - camera.CFrame.LookVector * (direction.Z * ((vfly and vehicleflyspeed or iyflyspeed) * 50))
+				VelocityHandler.Velocity = VelocityHandler.Velocity - camera.CFrame.LookVector * (direction.Z * ((vfly and vehicleflyspeed or z7nflyspeed) * 50))
 			end
 		end
 	end)
@@ -7073,14 +7110,14 @@ addcmd('fly',{},function(args, speaker)
 		mobilefly(speaker)
 	end
 	if args[1] and isNumber(args[1]) then
-		iyflyspeed = args[1]
+		z7nflyspeed = args[1]
 	end
 end)
 
 addcmd('flyspeed',{'flysp'},function(args, speaker)
 	local speed = args[1] or 1
 	if isNumber(speed) then
-		iyflyspeed = speed
+		z7nflyspeed = speed
 	end
 end)
 
@@ -7184,22 +7221,22 @@ addcmd('float', {'platform'},function(args, speaker)
 			local FloatValue = -3.1
 			Float.CFrame = getRoot(pchar).CFrame * CFrame.new(0,FloatValue,0)
 			notify('Float','Float Enabled (Q = down & E = up)')
-			qUp = IYMouse.KeyUp:Connect(function(KEY)
+			qUp = Z7NMouse.KeyUp:Connect(function(KEY)
 				if KEY == 'q' then
 					FloatValue = FloatValue + 0.5
 				end
 			end)
-			eUp = IYMouse.KeyUp:Connect(function(KEY)
+			eUp = Z7NMouse.KeyUp:Connect(function(KEY)
 				if KEY == 'e' then
 					FloatValue = FloatValue - 0.5
 				end
 			end)
-			qDown = IYMouse.KeyDown:Connect(function(KEY)
+			qDown = Z7NMouse.KeyDown:Connect(function(KEY)
 				if KEY == 'q' then
 					FloatValue = FloatValue - 0.5
 				end
 			end)
-			eDown = IYMouse.KeyDown:Connect(function(KEY)
+			eDown = Z7NMouse.KeyDown:Connect(function(KEY)
 				if KEY == 'e' then
 					FloatValue = FloatValue + 0.5
 				end
@@ -7606,7 +7643,7 @@ end)
 
 function deleteGuisAtPos()
 	pcall(function()
-		local guisAtPosition = Players.LocalPlayer.PlayerGui:GetGuiObjectsAtPosition(IYMouse.X, IYMouse.Y)
+		local guisAtPosition = Players.LocalPlayer.PlayerGui:GetGuiObjectsAtPosition(Z7NMouse.X, Z7NMouse.Y)
 		for _, gui in pairs(guisAtPosition) do
 			if gui.Visible == true then
 				gui:Destroy()
@@ -7633,7 +7670,7 @@ addcmd('unguidelete',{'noguidelete'},function(args, speaker)
 end)
 
 local wasStayOpen = StayOpen
-addcmd('hideiy',{},function(args, speaker)
+addcmd('hidez7n',{},function(args, speaker)
 	isHidden = true
 	wasStayOpen = StayOpen
 	if StayOpen == true then
@@ -7642,10 +7679,10 @@ addcmd('hideiy',{},function(args, speaker)
 	end
 	minimizeNum = 0
 	minimizeHolder()
-	if not (args[1] and tostring(args[1]) == 'nonotify') then notify('z7n FE Hidden','You can press the prefix key to access the command bar') end
+	if not (args[1] and tostring(args[1]) == 'nonotify') then notify('z7n Hidden','You can press the prefix key to access the command bar') end
 end)
 
-addcmd('showiy',{'unhideiy'},function(args, speaker)
+addcmd('showz7n',{'unhidez7n'},function(args, speaker)
 	isHidden = false
 	minimizeNum = -20
 	if wasStayOpen then
@@ -9913,7 +9950,7 @@ addcmd('tptool', {'teleporttool'}, function(args, speaker)
 		if not Char or not HRP then
 			return warn("Failed to find HumanoidRootPart")
 		end
-		HRP.CFrame = CFrame.new(IYMouse.Hit.X, IYMouse.Hit.Y + 3, IYMouse.Hit.Z, select(4, HRP.CFrame:components()))
+		HRP.CFrame = CFrame.new(Z7NMouse.Hit.X, Z7NMouse.Hit.Y + 3, Z7NMouse.Hit.Z, select(4, HRP.CFrame:components()))
 	end)
 end)
 
@@ -11883,7 +11920,7 @@ addcmd('hovername',{},function(args, speaker)
 	nbSelection.Color3 = Color3.new(1, 1, 1)
 	local function updateNameBox()
 		local t
-		local target = IYMouse.Target
+		local target = Z7NMouse.Target
 
 		if target then
 			local humanoid = target.Parent:FindFirstChildOfClass("Humanoid") or target.Parent.Parent:FindFirstChildOfClass("Humanoid")
@@ -11893,11 +11930,11 @@ addcmd('hovername',{},function(args, speaker)
 		end
 
 		if t ~= nil then
-			local x = IYMouse.X
-			local y = IYMouse.Y
+			local x = Z7NMouse.X
+			local y = Z7NMouse.Y
 			local xP
 			local yP
-			if IYMouse.X > 200 then
+			if Z7NMouse.X > 200 then
 				xP = x - 205
 				nameBox.TextXAlignment = Enum.TextXAlignment.Right
 			else
@@ -11915,7 +11952,7 @@ addcmd('hovername',{},function(args, speaker)
 			nbSelection.Adornee = nil
 		end
 	end
-	nbUpdateFunc = IYMouse.Move:Connect(updateNameBox)
+	nbUpdateFunc = Z7NMouse.Move:Connect(updateNameBox)
 end)
 
 addcmd('unhovername',{'nohovername'},function(args, speaker)
@@ -12358,7 +12395,7 @@ if IsOnMobile then
 	QuickCapture.Position = UDim2.new(0.489, 0, 0, 0)
 	QuickCapture.Size = UDim2.new(0, 32, 0, 33)
 	QuickCapture.Font = Enum.Font.SourceSansBold
-	QuickCapture.Text = "IY"
+	QuickCapture.Text = "Z7N"
 	QuickCapture.TextColor3 = Color3.fromRGB(255, 255, 255)
 	QuickCapture.TextSize = 20.000
 	QuickCapture.TextWrapped = true
@@ -12493,11 +12530,11 @@ if aliases and #aliases > 0 then
 	refreshaliases()
 end
 
-IYMouse.Move:Connect(checkTT)
+Z7NMouse.Move:Connect(checkTT)
 
 task.spawn(function()
 	local success, latestVersionInfo = pcall(function() 
-		local versionJson = game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/version')
+		local versionJson = game:HttpGet('https://raw.githubusercontent.com/ejh0/z7n-FE/main/z7n.lua')
 		return HttpService:JSONDecode(versionJson)
 	end)
 
@@ -12604,5 +12641,5 @@ task.spawn(function()
 	Credits:Destroy()
 	IntroBackground:Destroy()
 	minimizeHolder()
-	if IsOnMobile then notify("Unstable Device", "On mobile, z7n FE may have issues or features that are not functioning correctly.") end
+	if IsOnMobile then notify("Unstable Device", "On mobile, z7n may have issues or features that are not functioning correctly.") end
 end)
